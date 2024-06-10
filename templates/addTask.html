@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AddTasks</title>
+
+    <!-- GOOGLE FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+
+    <link rel="stylesheet" href="../CSS/shared-style.css">
+    <link rel="stylesheet" href="../CSS/addTaskStyle.css">
+    <!-- JS CONFETII -->
+    <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
+
+
+
+</head>
+
+
+
+<body onload="init()">
+
+    <!-- OPEN_CLOSE_NAVBAR -->
+    <div id="navbar-icon" onclick="openNavbar()">
+        <span class="material-symbols-outlined">
+            arrow_forward_ios
+        </span>
+    </div>
+    <div class="nav-bar" id="nav-bar">
+        <img id="nav-close-btn" src="../img/cancel.png" alt="" onclick="closeNavbar()">
+        <h3 id="gr-name">Group Name</h3>
+        <a href="./addTask.html">ADD_TASK</a>
+        <a href="./backlog.html">BACKLOG</a>
+        <a href="./board.html">BOARD</a>
+        <a href="./trash.html">TRASH</a>
+        <a href="./help.html">HELP</a>
+
+        <button class="logout-button" onclick="logout()">LOGOUT</button>
+
+    </div>
+
+
+
+    <div class="title">
+        <h2>Add Task</h2>
+        <p>Learning Manegment System Project</p>
+    </div>
+
+    <div class="form-container">
+        <!-- R1 -->
+        <div class="rows">
+            <div class="title-box">
+                <p>TITLE</p>
+                <input type="text" id="title" placeholder="insert a title">
+            </div>
+            <div class="date-box">
+                <p>DATE</p>
+                <input type="date" id="date" placeholder="insert a date">
+            </div>
+        </div>
+        <!-- R2 -->
+        <div class="rows">
+            <div class="category-box">
+                <p>CATEGORY</p>
+                <select name="category" id="category">
+                    <option value="cleaning">Cleaning</option>
+                    <option value="shopping">Shopping</option>
+                    <option value="cooking">Cooking</option>
+                </select>
+                <p onclick="showDiv('add-category-overlay'); cleanCategoryOverlay() " class="adding-links">Add neu
+                    category?</p>
+            </div>
+            <div class="user-box">
+                <p>ASIGEND TO</p>
+
+                <select name="" id="assigento" onchange="showUserImage()">
+
+                </select>
+                <p onclick="showDiv('add-user-overlay'); cleanUserOverlay();" class="adding-links">Add neu user?</p>
+            </div>
+        </div>
+        <!-- R3 -->
+        <div class="rows row3">
+            <div class="urgency-box">
+                <p>URGENCY</p>
+                <div class="urgency-radio" id="urgency">
+                    <input type="radio" name="urgency" id="heig" value="3">
+                    <label for="heig">HEIGH</label>
+                    <input type="radio" name="urgency" id="medium" value="2" checked>
+                    <label for="medium">MEDIUM</label>
+                    <input type="radio" name="urgency" id="low" value="1">
+                    <label for="low">LOW</label>
+                </div>
+            </div>
+            <div class="assigend-user" id="assigend-user">
+            </div>
+        </div>
+        <!-- R4 -->
+        <div class="rows">
+            <div class="disciption-box">
+                <p>DISCRIPTION</p>
+                <textarea name="" id="description" cols="40" rows="8"></textarea>
+            </div>
+            <div class="buttons-box">
+                <a href="#" id="cancel-link" onclick=" reloadPage()">CANCEL</a>
+                <button onclick="saveTaskInDB()">CREATE TASK</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- OVERLAYS -->
+
+    <div class="pre-loader" id="pre-loader">
+        <div class="pre-loader-content" id="pre-loader-content">
+            LOADING
+        </div>
+    </div>
+    <!-- User -->
+    <div id="add-user-overlay" class="display-none" name="overlay-background">
+        <div class="add-user-container">
+            <div class="upload-image-box">
+                <input type="file" id="user_image_input" onchange="previewUserimage()">
+                <label for="user_image_input" id="user_image_lable">
+                    <span class="material-symbols-outlined">
+                        add_a_photo
+                    </span>
+                </label>
+            </div>
+            <input type="text" placeholder="* Name" id="user-name">
+            <input type="email" placeholder="Email" id="user-email">
+            <div class="user-overlay-buttons">
+                <button onclick="  addUser()">Add</button>
+                <button onclick="hideDiv('add-user-overlay')">cancel</button>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- CATEGORY -->
+    <div id="add-category-overlay" class="display-none" name="overlay-background">
+        <div class="add-category-container">
+            <input type="text" placeholder="Add a neu Category!" id="new-catrgory">
+            <button onclick="addCategory()">Add</button>
+            <button onclick="hideDiv('add-category-overlay')">cancel</button>
+        </div>
+    </div>
+
+    <!-- Successfull adding task overlay -->
+    <div id="successful-overlay" class="display-none">
+        <div class="successful-box">
+            <h1>The task Added Successfully</h1>
+            <button onclick="gotoLocation('./backlog.html')">Go to Bcklog</button>
+            <button onclick="gotoLocation('./addTask.html')">another TASK</button>
+        </div>
+    </div>
+
+
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-database.js"></script>
+    <script src="../databaseFire.js"></script>
+    <script src="../JS/shairedFunktion.js"></script>
+    <script src="../JS/addTask.js" defer></script>
+</body>
+
+</html>

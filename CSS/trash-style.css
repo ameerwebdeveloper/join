@@ -1,0 +1,90 @@
+body {
+    background-color: rgb(0, 0, 0, 0.1);
+}
+
+* {
+    font-family: 'PT Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+
+
+.title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: unset;
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
+
+
+#big-container {
+    margin-left: 300px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.singel-task {
+    background-color: rgba(0, 0, 0, 0.692);
+    color: white;
+    min-width: 200px;
+    min-height: 200px;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.singel-task h3 {
+    padding: 0;
+    margin: 0;
+    font-size: 2em;
+}
+
+.singel-task p {
+    padding: 10px;
+}
+
+.task-icons {
+    background-color: transparent;
+    position: absolute;
+    bottom: 4px;
+    left: 2px;
+    right: 2px;
+    display: flex;
+    justify-content: center;
+}
+
+.delete-icon,
+.restore-icon {
+    cursor: pointer;
+}
+
+@media screen and (max-width: 1000px) {
+
+    #big-container {
+        margin-left: 10%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+
+@media screen and (max-width: 500px) {
+    #big-container {
+        margin-left: unset;
+        justify-content: center;
+        align-items: center;
+    }
+
+
+}

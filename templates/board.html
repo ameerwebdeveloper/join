@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- GOOGLE FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
+    <!-- ICON -->
+
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+    <!-- LINKS -->
+    <link rel="stylesheet" href="../CSS/shared-style.css">
+    <link rel="stylesheet" href="../CSS/board-style.css">
+    <title>Document</title>
+</head>
+
+<body onload="init()">
+    <!-- OPEN_CLOSE_NAVBAR -->
+    <div id="navbar-icon" onclick="openNavbar()">
+        <span class="material-symbols-outlined">
+            arrow_forward_ios
+        </span>
+    </div>
+    <div class="nav-bar" id="nav-bar">
+        <img id="nav-close-btn" src="../img/cancel.png" alt="" onclick="closeNavbar()">
+
+        <h3 id="gr-name">Group Name</h3>
+        <a href="./addTask.html">ADD_TASK</a>
+        <a href="./backlog.html">BACKLOG</a>
+        <a href="./board.html">BOARD</a>
+        <a href="./trash.html">TRASH</a>
+        <a href="./help.html">HELP</a>
+
+        <button class="logout-button" onclick="logout()">LOGOUT</button>
+
+    </div>
+
+    <div class="board-container">
+
+        <div class="title">
+            <h2>KANBAN BOARD</h2>
+            <p>Learning Manegment System Project</p>
+        </div>
+        <div class=" column">
+            <div class="column-title">
+                TODO
+            </div>
+            <div class="column-body todo" id="todo">
+                <h1>empty</h1>
+            </div>
+        </div>
+        <div class=" column">
+            <div class="column-title">
+                IMPROGRESS
+            </div>
+            <div class="column-body inprogress" id="inprogress">
+                <h1>empty</h1>
+            </div>
+        </div>
+        <div class=" column">
+            <div class="column-title">
+                TESTING
+            </div>
+            <div class="column-body testing" id="testing">
+                <h1>empty</h1>
+            </div>
+        </div>
+        <div class="column">
+            <div class="column-title">
+                DONE
+            </div>
+            <div class="column-body done" id="done">
+                <h1>empty</h1>
+            </div>
+        </div>
+    </div>
+
+    <!-- OVERLAYS -->
+    <div class="pre-loader" id="pre-loader">
+        <div class="pre-loader-content" id="pre-loader-content">
+            LOADING
+        </div>
+    </div>
+
+    <div id="empty-overlay" class=" display-none">
+        <h3>NO TASKS FOUND</h3>
+    </div>
+    <!-- SCRIPTS -->
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-database.js"></script>
+    <script src="../databaseFire.js"></script>
+    <script src="../JS/shairedFunktion.js"></script>
+    <script src="../JS/board.js" defer></script>
+
+</html>

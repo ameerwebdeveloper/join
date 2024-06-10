@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- GOOGLE FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+
+
+    <!-- LINKS -->
+    <link rel="stylesheet" href="../CSS/shared-style.css">
+    <link rel="stylesheet" href="../CSS/help-style.css">
+    <title>Help</title>
+
+
+</head>
+
+<body>
+
+    <!-- OPEN_CLOSE_NAVBAR -->
+    <div id="navbar-icon" onclick="openNavbar()">
+        <span class="material-symbols-outlined">
+            arrow_forward_ios
+        </span>
+    </div>
+    <div class="nav-bar" id="nav-bar">
+        <img id="nav-close-btn" src="../img/cancel.png" alt="" onclick="closeNavbar()">
+
+        <h3 id="gr-name">Group Name</h3>
+        <a href="./addTask.html">ADD_TASK</a>
+        <a href="./backlog.html">BACKLOG</a>
+        <a href="./board.html">BOARD</a>
+        <a href="./trash.html">TRASH</a>
+        <a href="./help.html">HELP</a>
+
+        <button class="logout-button" onclick="logout()">LOGOUT</button>
+
+    </div>
+    <div class="title">
+        <h2>HELP</h2>
+        <p>Learning Manegment System Project</p>
+    </div>
+    <div class="pages-panal">
+        <a href="#" onclick="changePage('add-task')">#AddTask</a>
+        <a href="#" onclick="changePage('backlog')">#Backlog</a>
+        <a href="#" onclick="changePage('board')">#Board</a>
+    </div>
+    <div id="big-container">
+        <div class="rows">
+            <div class="overlay"></div>
+
+            <div class="images">
+                <img id="image" src="../img/help1.png" alt="">
+            </div>
+            <div class="content" id="content">
+                <div id="list">
+                    <p>- Choose a meaningful title</p>
+                    <p>- Select a category</p>
+                    <p>- Describe the task shortly</p>
+                    <p>- Select the due date</p>
+                    <p>- How urgent is the task?</p>
+                    <p>- Assign the task to a member of your group</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- OVERLAYS -->
+    <div class="pre-loader" id="pre-loader">
+        <div class="pre-loader-content" id="pre-loader-content">
+            LOADING
+        </div>
+    </div>
+
+
+    <!-- SCRIPTS -->
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-database.js"></script>
+    <script src="../databaseFire.js"></script>
+    <script src="../JS/shairedFunktion.js"></script>
+    <script src="../JS/help.js"></script>
+
+</html>

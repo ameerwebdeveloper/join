@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JOIN</title>
+    <link rel="stylesheet" href="../CSS/shared-style.css">
+    <link rel="stylesheet" href="../CSS/login.css">
+
+    <!-- GOOGLE FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
+
+
+
+</head>
+
+<body onload="init()">
+    <div class="login-container">
+        <div class="group-login" id="group-login">
+            <h2>Login with your group name and Password</h2>
+            <input type="text" placeholder="Insert your group name" id="group-login-name">
+            <input type="text" placeholder="Insert your Passcode" id="group-login-passcode">
+            <p class="display-none" id="login-error">Login and Password is Wrong</p>
+            <button onclick="login();">LOGIN</button>
+            <p>need an account? <a href="#" onclick="hideDiv('group-login');showDiv('group-register')">register</a>
+            </p>
+        </div>
+        <div class="group-register display-none" id="group-register">
+            <h2>Make a new Group</h2>
+            <input type="text" placeholder="Insert your group name" id="new-group-name">
+            <input type="text" placeholder="Insert your group passcode" id="new-group-passcode">
+            <button onclick="saveGr()">Register</button>
+        </div>
+        <div class="demo">
+            <h2>Or Login with Demo Account</h2>
+            <button onclick="demoLogin()">DEMO</button>
+        </div>
+
+    </div>
+
+    <!-- OVERLAYS -->
+    <div class="pre-loader display-none" id="pre-loader">
+        <div class="pre-loader-content" id="pre-loader-content">
+            LOADING
+        </div>
+    </div>
+
+    <!-- OVERLAYS -->
+
+    <div id="warning-overlay">
+        <h1>Disclaimer</h1>
+        <div class="progress-bar-container">
+            <div class="progress-bar">
+
+            </div>
+        </div>
+        <p>
+            Diese Website wurde zum Lernen erstellt. Back-End-Sicherheit wird nicht berücksichtigt. Bitte geben Sie
+            keine wichtigen Informationen ein.
+        </p>
+        <button onclick="warningUnderstod()" class="agree-btn">Agree</button>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-database.js"></script>
+    <script src="../databaseFire.js"></script>
+    <script src="../JS/shairedFunktion.js"></script>
+    <script src="../JS/login.js" defer></script>
+</body>
+
+</html>

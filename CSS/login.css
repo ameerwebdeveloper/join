@@ -1,0 +1,189 @@
+body {
+    background-color: #FFFFFF;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    background-image: url("../img/technology-g2c80b3974_1920.jpg");
+}
+
+.login-container {
+    background-color: #F7F7F7;
+    min-width: 40%;
+    min-height: 50vh;
+    /* CENTER THE FORM */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* ************ */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+
+/* LoGIN_CONTAINER childs */
+
+.login-container>div {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 10px;
+}
+
+.group-login {
+    display: flex;
+}
+
+.group-register {
+    display: flex;
+}
+
+.demo {
+    display: flex;
+}
+
+.login-container button {
+    height: 50px;
+    width: 60%;
+    margin: 5px;
+    border-radius: 10%;
+    cursor: pointer;
+    background-color: #5865F2;
+    color: white;
+    font-size: 1.5em;
+}
+
+.login-container input {
+    height: 50px;
+    width: 80%;
+    margin: 5px;
+    border-radius: 10%;
+    cursor: pointer;
+    background-color: #FFFFFF;
+}
+
+.display-none {
+    display: none;
+}
+
+#login-error {
+    color: red;
+}
+
+/* OVERLAYS */
+
+#warning-overlay {
+    height: 300px;
+    width: 250px;
+    background-color: #8052dd;
+    border-radius: 40px 20px 0px 100px;
+    position: fixed;
+    right: 0%;
+    bottom: 0%;
+    padding: 15px;
+    z-index: 99;
+    box-sizing: border-box;
+    display: none;
+    color: white;
+    font-family: 'PT Sans';
+    padding-bottom: 45px;
+
+}
+
+.animated-warning-overlay {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    animation: show-the-slide 1.5s cubic-bezier(0.42, 0, 0.78, 1.58) forwards;
+}
+
+#warning-overlay p {
+    color: white;
+    text-align: justify;
+}
+
+.agree-btn {
+    color: white;
+    background-color: #0014f3a2;
+    height: 60px;
+    width: 100px;
+    border-radius: 40px;
+    border: 2px solid #e47a34;
+    cursor: pointer;
+    font-size: 1.5em;
+    text-align: center;
+    padding: 5px;
+
+
+}
+
+.agree-btn:hover {
+    background-color: #e47a34 !important;
+    transition: background-color 0.5s ease;
+
+}
+
+
+.progress-bar-container {
+    width: 100%;
+    background-color: #111;
+    border-radius: 1em;
+    display: flex;
+    align-items: center;
+}
+
+.progress-bar {
+    max-width: 100%;
+    min-width: 5%;
+    height: 10px;
+    background-color: blue;
+    border-radius: 1em;
+}
+
+@keyframes show-the-slide {
+    0% {
+        transform: translate(100%, 50%);
+
+    }
+
+
+    100% {
+        transform: translate(-10%, -10%);
+    }
+}
+
+
+@keyframes hide-the-slide {
+    0% {
+        transform: translate(-10%, -10%);
+
+    }
+
+
+    100% {
+        transform: translate(100%, 50%);
+    }
+}
+
+
+@media screen and (max-width: 900px) {
+    .login-container {
+        min-width: 60%;
+    }
+}
+
+
+@media screen and (max-width: 750px) {
+    .login-container {
+        min-width: 80%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .login-container {
+        min-width: 90vw;
+    }
+}
