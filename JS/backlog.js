@@ -1,19 +1,27 @@
-
+/**
+ * Initialisiert die Anwendung durch Aufruf der Funktionen zur Anzeige des Gruppennamens,
+ * Bereinigung des Backlogs und Anzeige der Aufgaben auf dem Bildschirm.
+ */
 function init() {
     showGrName()
     cleanBacklog()
     showTasksOnScreen()
-
 }
 
-
 let nummberOfBacklogtasks = 0;
+
+/**
+ * Bereinigt den Backlog-Bereich, indem der Inhalt des entsprechenden HTML-Elements gelöscht wird.
+ */
 function cleanBacklog() {
     let backlogTasks = document.getElementById("backlog-tasks")
     backlogTasks.innerHTML = ""
 }
 
-
+/**
+ * Zeigt die Aufgaben auf dem Bildschirm an, indem die Aufgaben, Benutzer und Kategorien
+ * von der Datenbank abgerufen und in den Backlog-Bereich eingefügt werden.
+ */
 async function showTasksOnScreen() {
     let response = await getGroupDataFromDB()
     try {
@@ -37,7 +45,10 @@ async function showTasksOnScreen() {
     }
 }
 
-
+/**
+ * Überprüft, ob der Backlog leer ist, und zeigt eine entsprechende Nachricht an,
+ * wenn keine Aufgaben vorhanden sind.
+ */
 function checkEmpityBackog() {
     if (nummberOfBacklogtasks < 1) {
         let backlogContainer = document.getElementById("backlog-tasks");
@@ -51,6 +62,10 @@ function checkEmpityBackog() {
     }
 }
 
+/**
+ * Fügt den gegebenen HTML-Text dem Backlog-Bereich hinzu.
+ * @param {string} htmlTaxt - Der HTML-Text, der hinzugefügt werden soll.
+ */
 function appendToBacklog(htmlTaxt) {
     let backlogTasks = document.getElementById("backlog-tasks")
     let myDiv = document.createElement("div")
@@ -59,6 +74,12 @@ function appendToBacklog(htmlTaxt) {
     backlogTasks.append(myDiv)
 }
 
+/**
+ * Generiert den HTML-Code für die Benutzerinformationen.
+ * @param {string} userId - Die ID des Benutzers.
+ * @param {object} users - Das Benutzerobjekt.
+ * @returns {string} - Der generierte HTML-Code.
+ */
 function genarateUserHtml(userId, users) {
     let userName = users[userId]["userName"]
     let userEmail = users[userId]["userEmail"]
@@ -77,6 +98,13 @@ function genarateUserHtml(userId, users) {
     return htmlText
 }
 
+/**
+ * Generiert den HTML-Code für die Backlog-Details.
+ * @param {string} category - Die Kategorie der Aufgabe.
+ * @param {string} description - Die Beschreibung der Aufgabe.
+ * @param {string} id - Die ID der Aufgabe.
+ * @returns {string} - Der generierte HTML-Code.
+ */
 function genarateBacklogHtml(category, description, id) {
     let htmlText = `   
                 <!--second  box  -->
@@ -96,10 +124,12 @@ function genarateBacklogHtml(category, description, id) {
     return htmlText
 }
 
-
-
 let editedTaskId;
 
+/**
+ * Bearbeitet eine Aufgabe, indem das Bearbeitungs-Overlay angezeigt und die Aufgabendaten geladen werden.
+ * @param {string} taskId - Die ID der zu bearbeitenden Aufgabe.
+ */
 async function editTask(taskId) {
     editedTaskId = taskId;
     let response = await getGroupDataFromDB()
@@ -113,8 +143,9 @@ async function editTask(taskId) {
     }
 }
 
-// Shows All exesting categories in category selection
-
+/**
+ * Zeigt alle vorhandenen Kategorien in der Kategoriewahl im Bearbeitungsmodus an.
+ */
 async function showCategoriesInEdit() {
     try {
         let response = await getGroupDataFromDB()
@@ -127,31 +158,29 @@ async function showCategoriesInEdit() {
             <option value="${categories[i]["id"]}" id="${categories[i]["id"]}}">${categories[i]["category_name"]}</option>
             `;
         }
-
     } catch (error) {
         console.log(error)
     }
-
 }
 
-
-// show all users in user selection
-async function showUsersInEdit(userId) {
+/**
+ * Zeigt alle Benutzer in der Benutzerauswahl im Bearbeitungsmodus an.
+ */
+async function showUsersInEdit() {
     let response = await getGroupDataFromDB()
     let users = Object.values(response.users)
     let userSelect = document.getElementById("assigento")
-
     userSelect.innerHTML = "";
     for (let i = 0; i < users.length; i++) {
         userSelect.innerHTML += `
         <option value="${users[i].userId}" id="${users[i].userId}">${users[i].userName}</option>
-        
         `;
     }
-
-
 }
 
+/**
+ * Speichert die bearbeitete Aufgabe in der Datenbank und lädt die Seite neu.
+ */
 function saveEditedTask() {
     database.ref('groups/' + currentGroup + '/tasks/' + editedTaskId).update({
         title: getEditAttributs().title,
@@ -160,12 +189,14 @@ function saveEditedTask() {
         urgency: getEditAttributs().urgency,
         description: getEditAttributs().description,
         assigento: getEditAttributs().assigento
-
     })
     location.reload();
 }
 
-
+/**
+ * Holt die bearbeiteten Attribute der Aufgabe aus dem Formular.
+ * @returns {object} - Die bearbeiteten Attribute der Aufgabe.
+ */
 function getEditAttributs() {
     let attributes = ["title", "date", "description", "category", "assigento", "urgency"]
     let valueOfAttributs = {};
@@ -176,6 +207,10 @@ function getEditAttributs() {
     return valueOfAttributs;
 }
 
+/**
+ * Pinned die Aufgabe und ändert deren Status zu "todo", lädt dann die Seite neu.
+ * @param {string} id - Die ID der Aufgabe.
+ */
 function pinTask(id) {
     changeStage(id, "todo")
     location.reload();
